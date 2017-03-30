@@ -1,6 +1,6 @@
 #include "TrajectoryFollower.hpp"
 
-#include <trajectory_follower/proxies/Task.hpp>
+#include <trajectory_follower/cbProxies/Task.hpp>
 
 namespace init
 {
@@ -23,7 +23,7 @@ bool TrajectoryFollower::connect()
     return init::Base::connect();
 }
 
-OutputProxyPort< base::commands::Motion2D >& TrajectoryFollower::getCommandOut()
+cbProxies::OutputPort< base::commands::Motion2D >& TrajectoryFollower::getCommandOut()
 {
     return trajectoryFollowerTask.getConcreteProxy()->motion_command;
 }

@@ -1,7 +1,7 @@
 #include "TraversabilitySimple.hpp"
 
-#include <traversability/proxies/Simple.hpp>
-#include <graph_slam/proxies/VelodyneSLAM.hpp>
+#include <traversability/cbProxies/Simple.hpp>
+#include <graph_slam/cbProxies/VelodyneSLAM.hpp>
 
 namespace init
 {
@@ -20,7 +20,7 @@ bool TraversabilitySimple::connect()
     return init::Base::connect();
 }
 
-OutputProxyPort< RTT::extras::ReadOnlyPointer< std::vector< envire::BinaryEvent > > >& TraversabilitySimple::getTraversabilityMapPort()
+cbProxies::OutputPort< RTT::extras::ReadOnlyPointer< std::vector< envire::BinaryEvent > > >& TraversabilitySimple::getTraversabilityMapPort()
 {
     return traversabilityTask.getConcreteProxy()->traversability_map;
 }

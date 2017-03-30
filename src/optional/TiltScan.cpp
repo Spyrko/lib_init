@@ -1,5 +1,5 @@
 #include "TiltScan.hpp"
-#include <tilt_scan/proxies/Task.hpp>
+#include <tilt_scan/cbProxies/Task.hpp>
 
 namespace init
 {
@@ -22,7 +22,7 @@ bool TiltScan::connect()
     return Base::connect();
 }
 
-OutputProxyPort< base::samples::Pointcloud > TiltScan::getPointcloud()
+cbProxies::OutputPort< base::samples::Pointcloud > TiltScan::getPointcloud()
 {
     return tiltTask.getConcreteProxy()->pointcloud;
 }

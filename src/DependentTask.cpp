@@ -18,17 +18,6 @@ DependentTaskBase::~DependentTaskBase()
 
 }
 
-RTT::corba::TaskContextProxy* DependentTaskBase::getProxy()
-{
-    if(!proxy)
-    {
-        proxy = RTT::corba::TaskContextProxy::Create(taskName, false);
-    }
-    
-    return proxy;
-}
-
-
 void DependentTaskBase::setDeployment(const boost::shared_ptr< orocos_cpp::Deployment >& newDeployment)
 {
     if(!newDeployment)

@@ -3,8 +3,8 @@
 #include <lib_init/Base.hpp>
 #include "Canbus.hpp"
 
-#include <hbridge/proxies/CommandWriter.hpp>
-#include <hbridge/proxies/SensorReader.hpp>
+#include <hbridge/cbProxies/CommandWriter.hpp>
+#include <hbridge/cbProxies/SensorReader.hpp>
 #include <lib_init/JointDriver.hpp>
 
 namespace init 
@@ -19,11 +19,11 @@ public:
     
     virtual void initProxies();
     virtual bool connect();
-    DependentTask<hbridge::proxies::SensorReader> sensorReader;
-    DependentTask<hbridge::proxies::CommandWriter> commandWriter;
+    DependentTask<hbridge::cbProxies::SensorReader> sensorReader;
+    DependentTask<hbridge::cbProxies::CommandWriter> commandWriter;
     
-    virtual InputProxyPort< base::commands::Joints >& getCommandPort();
-    virtual OutputProxyPort< base::samples::Joints >& getStatusPort();
+    virtual cbProxies::InputPort< base::commands::Joints >& getCommandPort();
+    virtual cbProxies::OutputPort< base::samples::Joints >& getStatusPort();
     
 };
     

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <lib_init/PositionProvider.hpp>
-#include <odometry/proxies/ContactPointTask.hpp>
+#include <odometry/cbProxies/ContactPointTask.hpp>
 #include "BodyContactsProvider.hpp"
 #include <lib_init/IMUDriver.hpp>
 
@@ -16,9 +16,9 @@ public:
     ContactPointOdometry(const std::string &odometryName, BodyContactsProvider &bodyContacts, IMUDriver &imu);
     virtual ~ContactPointOdometry();
     virtual bool connect();
-    DependentTask<odometry::proxies::ContactPointTask> contactPointOdometry;
+    DependentTask<odometry::cbProxies::ContactPointTask> contactPointOdometry;
     
-    virtual OutputProxyPort< base::samples::RigidBodyState >& getPositionSamples();
+    virtual cbProxies::OutputPort< base::samples::RigidBodyState >& getPositionSamples();
 };
 
 }

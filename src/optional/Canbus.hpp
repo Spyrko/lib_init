@@ -2,8 +2,8 @@
 
 #include <lib_init/Base.hpp>
 
-#include <orocos_cpp_base/ProxyPort.hpp>
-#include <canbus/proxies/Task.hpp>
+#include <orocos_callback_base/Port.hpp>
+#include <canbus/cbProxies/Task.hpp>
 
 namespace canbus {
     class Message;
@@ -22,7 +22,7 @@ struct CanbusWatch
     
 class Canbus : public Base
 {
-    std::map<std::string, OutputProxyPort<::canbus::Message >*> outputs;
+    std::map<std::string, cbProxies::OutputPort<::canbus::Message >*> outputs;
     std::vector<CanbusWatch> watches;
 public:
     Canbus(const std::string& canbusName);
@@ -32,9 +32,9 @@ public:
     virtual bool configure();
     
     bool watch(const std::string& name, int id, int mask);
-    InputProxyPort<canbus::Message> &getMsgInPort();
-    OutputProxyPort<canbus::Message> &getMsgOutPort(const std::string& watchedName);
-    DependentTask<canbus::proxies::Task> canbus;
+    cbProxies::InputPort<canbus::Message> &getMsgInPort();
+    cbProxies::OutputPort<canbus::Message> &getMsgOutPort(const std::string& watchedName);
+    DependentTask<canbus::cbProxies::Task> canbus;
 };
     
     

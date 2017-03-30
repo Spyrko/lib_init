@@ -45,7 +45,7 @@ message("SRC extra is ${SRC_EXTRA}")
 rock_library(lib_init
     SOURCES
         Base.cpp
-        CommonStart.cpp
+#         CommonStart.cpp
         DependentTask.cpp
         MapProvider.cpp
         PointCloudProvider.cpp
@@ -55,7 +55,7 @@ rock_library(lib_init
         Base.hpp
         CameraDriver.hpp
         Container.hpp
-        CommonStart.hpp
+#         CommonStart.hpp
         DependentTask.hpp
         ForceTorqueSensor.hpp
         IMUDriver.hpp
@@ -74,6 +74,7 @@ rock_library(lib_init
 #         ${HDR_EXTRA}
     DEPS_PKGCONFIG
         base-lib
+        orocos_callback_base
         orocos_cpp_base
         orocos_cpp
         lib_config

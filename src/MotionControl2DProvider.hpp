@@ -1,6 +1,6 @@
 #pragma once
 
-#include <orocos_cpp_base/ProxyPort.hpp>
+#include <orocos_callback_base/Port.hpp>
 #include <base/samples/CommandSamples.hpp>
 #include <lib_init/Base.hpp>
 
@@ -12,6 +12,6 @@ class MotionControl2DProvider : public virtual Base
 public:
     MotionControl2DProvider(const std::string& name): Base(name) {};
     virtual ~MotionControl2DProvider() {};
-    virtual OutputProxyPort<base::commands::Motion2D> &getCommand2DPort() = 0;
+    virtual cbProxies::OutputPort<base::commands::Motion2D> &getCommand2DPort() = 0;
 };
 }

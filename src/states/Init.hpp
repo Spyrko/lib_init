@@ -7,13 +7,15 @@
 class Init : public state_machine::State
 {
 public:
-    Init(orocos_cpp::TransformerHelper &trHelper, orocos_cpp::ConfigurationHelper &confHelper, init::Base &toStart, state_machine::State *success);
+    Init(orocos_cpp::TransformerHelper &trHelper, cbProxies::ConfigurationHelper &confHelper, init::Base &toStart, state_machine::State *success);
     virtual ~Init();
 
     virtual void init() {};
     virtual void enter(const State* lastState);
     virtual void executeFunction();
     virtual void exit();
+    
+    void setCallbackInterface(cbProxies::CallbackInterface* cbi);
     
     void activateLogging(const std::vector< std::string >& excludeList = std::vector<std::string>());
 
@@ -25,7 +27,8 @@ protected:
     void printDependencies(init::Base &toStart, int level);
     
     orocos_cpp::TransformerHelper &trHelper;
-    orocos_cpp::ConfigurationHelper &confHelper;
+    cbProxies::ConfigurationHelper &confHelper;
+    cbProxies::CallbackInterface* cbi;
 
     bool loggingActive;
     std::vector<std::string> excludeList;

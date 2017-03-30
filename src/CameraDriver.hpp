@@ -1,8 +1,9 @@
 #pragma once
 
-#include <orocos_cpp_base/ProxyPort.hpp>
+#include <orocos_callback_base/Port.hpp>
 #include "Base.hpp"
 #include <base/samples/Frame.hpp>
+#include <rtt/extras/ReadOnlyPointer.hpp>
 
 namespace init
 {
@@ -12,6 +13,6 @@ class CameraDriver : public Base
 public:
     CameraDriver(const std::string& name) : Base(name) {};
     virtual ~CameraDriver() {};
-    virtual OutputProxyPort< RTT::extras::ReadOnlyPointer< base::samples::frame::Frame > > &getFramePort() = 0;
+    virtual cbProxies::OutputPort< RTT::extras::ReadOnlyPointer< base::samples::frame::Frame > > &getFramePort() = 0;
 };
 }

@@ -1,7 +1,7 @@
 #include "VelodyneSlam.hpp"
 
-#include <graph_slam/proxies/VelodyneSLAM.hpp>
-#include <velodyne_lidar/proxies/LaserScanner.hpp>
+#include <graph_slam/cbProxies/VelodyneSLAM.hpp>
+#include <velodyne_lidar/cbProxies/LaserScanner.hpp>
 
 namespace init
 {
@@ -51,12 +51,12 @@ bool VelodyneSlam::connect()
     return init::Base::connect();
 }
 
-OutputProxyPort< base::samples::RigidBodyState >& VelodyneSlam::getPositionSamples()
+cbProxies::OutputPort< base::samples::RigidBodyState >& VelodyneSlam::getPositionSamples()
 {
     return velodyneSlamTask.getConcreteProxy()->pose_samples;
 }
 
-OutputProxyPort< RTT::extras::ReadOnlyPointer< envire::BinaryEvents > >& VelodyneSlam::getMapPort()
+cbProxies::OutputPort< RTT::extras::ReadOnlyPointer< envire::BinaryEvents > >& VelodyneSlam::getMapPort()
 {
     return velodyneSlamTask.getConcreteProxy()->envire_map;
 }

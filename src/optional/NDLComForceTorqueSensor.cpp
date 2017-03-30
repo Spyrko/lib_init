@@ -1,6 +1,6 @@
 #include "NDLComForceTorqueSensor.hpp"
 
-#include <serial_ndlcom/proxies/Task.hpp>
+#include <serial_ndlcom/cbProxies/Task.hpp>
 
 namespace init
 {
@@ -19,7 +19,7 @@ bool NDLComForceTorqueSensor::connect()
     return ForceTorqueSensor::connect();
 }
  
-OutputProxyPort< base::samples::Wrenches >& NDLComForceTorqueSensor::getStatusPort()
+cbProxies::OutputPort< base::samples::Wrenches >& NDLComForceTorqueSensor::getStatusPort()
 {
     return forceTorqueSensorTask.getConcreteProxy()->ft_values;
 }

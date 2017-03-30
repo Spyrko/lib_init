@@ -5,7 +5,7 @@
 #include <lib_init/MotionControl2D.hpp>
 
 namespace trajectory_follower {
-     namespace proxies {
+     namespace cbProxies {
          class Task;
      }
 }
@@ -19,10 +19,10 @@ protected:
     MotionControl2D &motionController;
     
 public:
-    DependentTask< trajectory_follower::proxies::Task > trajectoryFollowerTask;
+    DependentTask< trajectory_follower::cbProxies::Task > trajectoryFollowerTask;
     TrajectoryFollower(PositionProvider &posProv,  MotionControl2D &motionController, const std::string &trajectoryFollowerTaskName);
     virtual bool connect();
-    virtual OutputProxyPort<base::commands::Motion2D> &getCommandOut();
+    virtual cbProxies::OutputPort<base::commands::Motion2D> &getCommandOut();
 };
 
 

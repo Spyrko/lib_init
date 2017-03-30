@@ -1,5 +1,5 @@
 #include "NDLComSerial.hpp"
-#include <serial_ndlcom/proxies/Task.hpp>
+#include <serial_ndlcom/cbProxies/Task.hpp>
 
 namespace init 
 {

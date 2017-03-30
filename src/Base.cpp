@@ -40,12 +40,12 @@ void Base::initProxies()
     }
 }
 
-bool Base::connect()
+bool Base::connect()  //TODO ist das noch ein Dummy?
 {
     return true;
 }
 
-bool Base::applyConfig(orocos_cpp::ConfigurationHelper& confHelper)
+bool Base::applyConfig(cbProxies::ConfigurationHelper& confHelper)
 {
     for(DependentTaskBase* t: dependendTasks)
     {
@@ -67,13 +67,13 @@ bool Base::applyConfig(orocos_cpp::ConfigurationHelper& confHelper)
 
 bool Base::setupTransformer(orocos_cpp::TransformerHelper& trHelper)
 {
-    for(DependentTaskBase* t: dependendTasks)
-    {
-        if(!trHelper.configureTransformer(t->getProxy()))
-        {
-            throw std::runtime_error("init::Base::Failed to configure transformer for task " + t->getTaskName());
-        }
-    }
+//     for(DependentTaskBase* t: dependendTasks)
+//     {
+//         if(!trHelper.configureTransformer(t->getProxy()))
+//         {
+//             throw std::runtime_error("init::Base::Failed to configure transformer for task " + t->getTaskName());
+//         }
+//     }
     return true;
 }
 

@@ -9,7 +9,7 @@ init::SimForceTorqueSensor::SimForceTorqueSensor(init::Simulator& sim, const std
     sensorTask.setDeployment(sim.simulator.getDeployment());
 }
 
-OutputProxyPort< base::samples::Wrenches >& init::SimForceTorqueSensor::getStatusPort()
+cbProxies::OutputPort< base::samples::Wrenches >& init::SimForceTorqueSensor::getStatusPort()
 {
     return sensorTask.getConcreteProxy()->wrenches;
 }

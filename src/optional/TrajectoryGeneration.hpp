@@ -6,7 +6,7 @@
 #include <base/JointsTrajectory.hpp>
 
 namespace trajectory_generation {
-    namespace proxies {
+    namespace cbProxies {
         class Task;
     }
 }
@@ -18,15 +18,15 @@ class TrajectoryGeneration : public TrajectoryControl {
 protected:
     JointDriver &jointDriver;
 public:
-    DependentTask< trajectory_generation::proxies::Task > trajCtrlTask;
+    DependentTask< trajectory_generation::cbProxies::Task > trajCtrlTask;
     TrajectoryGeneration(JointDriver &jd, const std::string &trajCtrlTaskName);
     
     virtual bool connect();
     
-    virtual InputProxyPort< base::samples::Joints >& getPositionTargetPort();
-    virtual InputProxyPort< base::JointsTrajectory >& getTrajectoryTargetPort();
+    virtual cbProxies::InputPort< base::samples::Joints >& getPositionTargetPort();
+    virtual cbProxies::InputPort< base::JointsTrajectory >& getTrajectoryTargetPort();
     
-    virtual OutputProxyPort< base::samples::Joints >& getJointStatusPort();
+    virtual cbProxies::OutputPort< base::samples::Joints >& getJointStatusPort();
 };
 
 }

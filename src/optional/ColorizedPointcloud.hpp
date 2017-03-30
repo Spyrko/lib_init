@@ -5,7 +5,7 @@
 #include <base/samples/Pointcloud.hpp>
 
 namespace projection {
-     namespace proxies {
+     namespace cbProxies {
          class ColorizePointcloudMultiCam;
      }
 }
@@ -19,12 +19,12 @@ namespace init
         CameraDriver &camTower;
         
     public:
-        DependentTask< projection::proxies::ColorizePointcloudMultiCam > colorizePointcloudMultiCamTask;
+        DependentTask< projection::cbProxies::ColorizePointcloudMultiCam > colorizePointcloudMultiCamTask;
         
         ColorizedPointcloud(TiltScan &tSc, CameraDriver &camFront, CameraDriver &camTower, const std::string &colorizePointcloudMultiCamTaskName);
         virtual bool connect();
         
-        OutputProxyPort<base::samples::Pointcloud> getColorizedPointcloud();
+        cbProxies::OutputPort<base::samples::Pointcloud> getColorizedPointcloud();
         
     };
 }

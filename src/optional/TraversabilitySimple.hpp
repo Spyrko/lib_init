@@ -5,7 +5,7 @@
 #include "VelodyneSlam.hpp"
 
 namespace traversability {
-     namespace proxies {
+     namespace cbProxies {
          class Simple;
      }
 }
@@ -18,10 +18,10 @@ class TraversabilitySimple : public TraversabilityMapProvider {
     MapProvider &slam;
     
 public:
-    DependentTask< traversability::proxies::Simple > traversabilityTask;
+    DependentTask< traversability::cbProxies::Simple > traversabilityTask;
     TraversabilitySimple(MapProvider &slam, const std::string &traversabilityTaskName);
     
-    virtual OutputProxyPort< RTT::extras::ReadOnlyPointer< envire::BinaryEvents > >& getTraversabilityMapPort();
+    virtual cbProxies::OutputPort< RTT::extras::ReadOnlyPointer< envire::BinaryEvents > >& getTraversabilityMapPort();
     virtual bool connect();
 };
 

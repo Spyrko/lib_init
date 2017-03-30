@@ -16,12 +16,12 @@ bool VelodyneDriver::connect()
 }
 
 
-OutputProxyPort< base::samples::DepthMap >& VelodyneDriver::getLaserScansPort()
+cbProxies::OutputPort< base::samples::DepthMap >& VelodyneDriver::getLaserScansPort()
 {
     return getDepthMapPort();
 }
 
-OutputProxyPort< base::samples::DepthMap >& VelodyneDriver::getDepthMapPort()
+cbProxies::OutputPort< base::samples::DepthMap >& VelodyneDriver::getDepthMapPort()
 {
     return velodyneTask.getConcreteProxy()->laser_scans;
 }

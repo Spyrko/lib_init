@@ -2,7 +2,7 @@
 
 #include <lib_init/JointDriver.hpp>
 #include "NDLComSerial.hpp"
-#include <ndlcom_aila_joints/proxies/AILAJointTask.hpp>
+#include <ndlcom_aila_joints/cbProxies/AILAJointTask.hpp>
 
 
 namespace init
@@ -18,9 +18,9 @@ public:
     virtual bool connect();
     virtual bool start();
 
-    virtual OutputProxyPort<base::samples::Joints> &getStatusPort();
-    virtual InputProxyPort<base::commands::Joints> &getCommandPort();
+    virtual cbProxies::OutputPort<base::samples::Joints> &getStatusPort();
+    virtual cbProxies::InputPort<base::commands::Joints> &getCommandPort();
 
-    DependentTask<ndlcom_aila_joints::proxies::AILAJointTask> jointTask;
+    DependentTask<ndlcom_aila_joints::cbProxies::AILAJointTask> jointTask;
 };
 }

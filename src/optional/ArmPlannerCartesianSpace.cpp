@@ -1,7 +1,7 @@
 #include "ArmPlannerCartesianSpace.hpp"
 
-#include <manipulator_motion_planner/proxies/CartesianSpaceTask.hpp>
-#include <manipulator_motion_planner/proxies/PlannerTask.hpp>
+#include <manipulator_motion_planner/cbProxies/CartesianSpaceTask.hpp>
+#include <manipulator_motion_planner/cbProxies/PlannerTask.hpp>
 
 namespace init
 {
@@ -21,32 +21,32 @@ bool ArmPlannerCartesianSpace::connect()
     return Base::connect();
 }
 
-InputProxyPort< ::base::samples::RigidBodyState >& ArmPlannerCartesianSpace::getTargetPort()
+cbProxies::InputPort< ::base::samples::RigidBodyState >& ArmPlannerCartesianSpace::getTargetPort()
 {
     return cartesianSpacePlanner.getConcreteProxy()->target_pose;
 }
 
-OutputProxyPort< ::base::JointsTrajectory >& ArmPlannerCartesianSpace::getTrajectoryPort()
+cbProxies::OutputPort< ::base::JointsTrajectory >& ArmPlannerCartesianSpace::getTrajectoryPort()
 {
     return cartesianSpacePlanner.getConcreteProxy()->planned_trajectory;
 }
 
-InputProxyPort< base::samples::Pointcloud>& ArmPlannerCartesianSpace::getPointCloudPort()
+cbProxies::InputPort< base::samples::Pointcloud>& ArmPlannerCartesianSpace::getPointCloudPort()
 {
     return cartesianSpacePlanner.getConcreteProxy()->environment_in;
 }
 
-InputProxyPort< manipulator_planner_library::ModelObject>& ArmPlannerCartesianSpace::getObjectPort()
+cbProxies::InputPort< manipulator_planner_library::ModelObject>& ArmPlannerCartesianSpace::getObjectPort()
 {
     return cartesianSpacePlanner.getConcreteProxy()->known_object;
 }
 
-OutputProxyPort< boost::int32_t >& ArmPlannerCartesianSpace::getStatePort()
+cbProxies::OutputPort< boost::int32_t >& ArmPlannerCartesianSpace::getStatePort()
 {
     return cartesianSpacePlanner.getConcreteProxy()->state;
 }
 
-InputProxyPort< base::samples::Joints >& ArmPlannerCartesianSpace::getStartPort()
+cbProxies::InputPort< base::samples::Joints >& ArmPlannerCartesianSpace::getStartPort()
 {
     return cartesianSpacePlanner.getConcreteProxy()->joints_status;
 }

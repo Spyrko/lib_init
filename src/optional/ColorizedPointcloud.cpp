@@ -1,5 +1,5 @@
 #include "ColorizedPointcloud.hpp"
-#include <projection/proxies/ColorizePointcloudMultiCam.hpp>
+#include <projection/cbProxies/ColorizePointcloudMultiCam.hpp>
 
 namespace init 
 {
@@ -24,7 +24,7 @@ bool ColorizedPointcloud::connect()
     return init::Base::connect();
 }
 
-OutputProxyPort< base::samples::Pointcloud > ColorizedPointcloud::getColorizedPointcloud()
+cbProxies::OutputPort< base::samples::Pointcloud > ColorizedPointcloud::getColorizedPointcloud()
 {
     return colorizePointcloudMultiCamTask.getConcreteProxy()->colored_points;
 }

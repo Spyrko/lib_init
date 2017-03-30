@@ -6,12 +6,12 @@ init::SimIMUDriver::SimIMUDriver(const std::string &imuTaskName, init::Simulator
     registerDependency(sim);
 }
 
-OutputProxyPort< base::samples::RigidBodyState > init::SimIMUDriver::getOrientationSamples()
+cbProxies::OutputPort< base::samples::RigidBodyState > init::SimIMUDriver::getOrientationSamples()
 {
     return imuTask.getConcreteProxy()->orientation_samples;
 }
 
-OutputProxyPort< base::samples::IMUSensors > init::SimIMUDriver::getSensorSamples()
+cbProxies::OutputPort< base::samples::IMUSensors > init::SimIMUDriver::getSensorSamples()
 {
     return imuTask.getConcreteProxy()->calibrated_sensors;
 }

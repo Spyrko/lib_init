@@ -13,6 +13,10 @@ namespace init {
 namespace orocos_cpp
 {
     class TransformerHelper;
+}
+
+namespace cbProxies
+{
     class ConfigurationHelper;
 }
 
@@ -33,7 +37,7 @@ class StartCommon
     int runCommon(state_machine::State *initialState, const std::vector< init::Base* >& toInit);
     
     orocos_cpp::TransformerHelper *transformerHelper;
-    orocos_cpp::ConfigurationHelper *configHelper;
+    cbProxies::ConfigurationHelper *configHelper;
     smurf::Robot *robot;
     std::vector<std::string> logExcludeList;
 public:

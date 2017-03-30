@@ -2,8 +2,8 @@
 
 #include <lib_init/DepthMapProvider.hpp>
 #include <base/samples/DepthMap.hpp>
-#include <orocos_cpp_base/ProxyPort.hpp>
-#include <velodyne_lidar/proxies/LaserScanner.hpp>
+#include <orocos_callback_base/Port.hpp>
+#include <velodyne_lidar/cbProxies/LaserScanner.hpp>
 
 namespace init
 {
@@ -15,9 +15,9 @@ protected:
 public:
     VelodyneDriver(const std::string &velodyneTaskName);
     virtual ~VelodyneDriver() {};
-    DependentTask< velodyne_lidar::proxies::LaserScanner > velodyneTask;
-    OutputProxyPort< base::samples::DepthMap >& getLaserScansPort();
-    OutputProxyPort< base::samples::DepthMap >& getDepthMapPort();
+    DependentTask< velodyne_lidar::cbProxies::LaserScanner > velodyneTask;
+    cbProxies::OutputPort< base::samples::DepthMap >& getLaserScansPort();
+    cbProxies::OutputPort< base::samples::DepthMap >& getDepthMapPort();
 };
 
 }

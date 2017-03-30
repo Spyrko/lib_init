@@ -4,7 +4,7 @@
 #include "ArmPlanner.hpp"
 
 namespace manipulator_motion_planner {
-    namespace proxies {
+    namespace cbProxies {
         class JointSpaceTask;
     }
 }
@@ -16,13 +16,13 @@ class ArmPlannerJointSpace : public ArmPlanner {
 public:
     ArmPlannerJointSpace(const std::string &armPlannerName);
     virtual bool connect();
-    InputProxyPort< base::samples::Joints >& getTargetPort();
-    DependentTask< manipulator_motion_planner::proxies::JointSpaceTask > jointSpacePlanner;
-    virtual OutputProxyPort< ::base::JointsTrajectory >& getTrajectoryPort();
-    virtual InputProxyPort< base::samples::Pointcloud >& getPointCloudPort();
-    virtual InputProxyPort< manipulator_planner_library::ModelObject >& getObjectPort();
-    virtual OutputProxyPort< boost::int32_t >& getStatePort();
-    virtual InputProxyPort< base::samples::Joints >& getStartPort();
+    cbProxies::InputPort< base::samples::Joints >& getTargetPort();
+    DependentTask< manipulator_motion_planner::cbProxies::JointSpaceTask > jointSpacePlanner;
+    virtual cbProxies::OutputPort< ::base::JointsTrajectory >& getTrajectoryPort();
+    virtual cbProxies::InputPort< base::samples::Pointcloud >& getPointCloudPort();
+    virtual cbProxies::InputPort< manipulator_planner_library::ModelObject >& getObjectPort();
+    virtual cbProxies::OutputPort< boost::int32_t >& getStatePort();
+    virtual cbProxies::InputPort< base::samples::Joints >& getStartPort();
 };
 
 }

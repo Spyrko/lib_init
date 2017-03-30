@@ -29,8 +29,8 @@ bool init::Canbus::configure()
         
         canbus.getConcreteProxy()->synchronize();
         
-        OutputProxyPort<canbus::Message> *msgOut = new OutputProxyPort<canbus::Message> 
-                                                    (canbus.getConcreteProxy()->getPort(watch.name));
+        cbProxies::OutputPort<canbus::Message> *msgOut = new cbProxies::OutputPort<canbus::Message> 
+                                                    (*canbus.getConcreteProxy(), watch.name);
         
         outputs.insert(std::make_pair(watch.name, msgOut));
     }
@@ -45,12 +45,12 @@ bool init::Canbus::watch(const std::string& name, int id, int mask)
     return true;
 }
 
-InputProxyPort< canbus::Message >& init::Canbus::getMsgInPort()
+cbProxies::InputPort< canbus::Message >& init::Canbus::getMsgInPort()
 {
     return canbus.getConcreteProxy()->in;
 }
 
-OutputProxyPort< canbus::Message >& init::Canbus::getMsgOutPort(const std::string& watchedName)
+cbProxies::OutputPort< canbus::Message >& init::Canbus::getMsgOutPort(const std::string& watchedName)
 {
     if(outputs.find(watchedName) == outputs.end())
         throw new std::runtime_error("error: tried to access unwatched output port from canbus");

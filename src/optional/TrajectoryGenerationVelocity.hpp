@@ -5,10 +5,10 @@
 #include <lib_init/TrajectoryControl.hpp>
 #include <trajectory_generation/ConstrainedJointsTrajectory.hpp>
 #include <trajectory_generation/trajectory_generationTypes.hpp>
-#include <orocos_cpp_base/ProxyPort.hpp>
+#include <orocos_callback_base/Port.hpp>
 
 namespace trajectory_generation {
-    namespace proxies {
+    namespace cbProxies {
         class RMLVelocityTask;
     }
 }
@@ -20,13 +20,13 @@ class TrajectoryGenerationVelocity : public TrajectoryControl {
 protected:
     JointDriver &jointDriver; 
 public:
-    DependentTask< trajectory_generation::proxies::RMLVelocityTask > trajCtrlTask;
+    DependentTask< trajectory_generation::cbProxies::RMLVelocityTask > trajCtrlTask;
     TrajectoryGenerationVelocity(JointDriver &jd, const std::string &trajCtrlTaskName);
     
-    virtual InputProxyPort< base::samples::Joints >& getVelocityTargetPort();
-    virtual InputProxyPort< trajectory_generation::ConstrainedJointsCmd >& getConstrainedVelocityTargetPort();
+    virtual cbProxies::InputPort< base::samples::Joints >& getVelocityTargetPort();
+    virtual cbProxies::InputPort< trajectory_generation::ConstrainedJointsCmd >& getConstrainedVelocityTargetPort();
     
-    virtual OutputProxyPort< base::samples::Joints >& getJointStatusPort();
+    virtual cbProxies::OutputPort< base::samples::Joints >& getJointStatusPort();
     
     virtual bool connect();
 };

@@ -1,5 +1,5 @@
 #include "TrajectoryGenerationVelocity.hpp"
-#include <trajectory_generation/proxies/RMLVelocityTask.hpp>
+#include <trajectory_generation/cbProxies/RMLVelocityTask.hpp>
 
 namespace init
 {
@@ -20,17 +20,17 @@ bool TrajectoryGenerationVelocity::connect()
     return Base::connect();
 }
 
-InputProxyPort< base::commands::Joints >& TrajectoryGenerationVelocity::getVelocityTargetPort()
+cbProxies::InputPort< base::commands::Joints >& TrajectoryGenerationVelocity::getVelocityTargetPort()
 {
     return trajCtrlTask.getConcreteProxy()->velocity_target;
 }
 
-InputProxyPort< trajectory_generation::ConstrainedJointsCmd >& TrajectoryGenerationVelocity::getConstrainedVelocityTargetPort()
+cbProxies::InputPort< trajectory_generation::ConstrainedJointsCmd >& TrajectoryGenerationVelocity::getConstrainedVelocityTargetPort()
 {
     return trajCtrlTask.getConcreteProxy()->constrained_velocity_target;
 }
 
-OutputProxyPort< base::samples::Joints >& TrajectoryGenerationVelocity::getJointStatusPort()
+cbProxies::OutputPort< base::samples::Joints >& TrajectoryGenerationVelocity::getJointStatusPort()
 {
     return jointDriver.getStatusPort();
 }

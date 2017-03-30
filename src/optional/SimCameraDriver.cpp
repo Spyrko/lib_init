@@ -14,7 +14,7 @@ void SimCameraDriver::initProxies()
     init::Base::initProxies();
 }
 
-OutputProxyPort< RTT::extras::ReadOnlyPointer< base::samples::frame::Frame > >& SimCameraDriver::getFramePort()
+cbProxies::OutputPort< RTT::extras::ReadOnlyPointer< base::samples::frame::Frame > >& SimCameraDriver::getFramePort()
 {
     return cameraTask.getConcreteProxy()->frame;
 }

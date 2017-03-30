@@ -11,4 +11,5 @@ rock_library(init_states
         orocos_cpp
         state_machine
         lib_config
+        proxy_types
 )

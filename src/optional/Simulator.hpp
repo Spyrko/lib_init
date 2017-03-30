@@ -2,7 +2,7 @@
 
 #include <lib_init/Base.hpp>
 #include <orocos_cpp/Deployment.hpp>
-#include <mars/proxies/Task.hpp>
+#include <mars/cbProxies/Task.hpp>
 
 namespace init
 {
@@ -13,6 +13,6 @@ protected:
 public:
     Simulator(const std::string& simTaskName, const boost::shared_ptr< orocos_cpp::Deployment >& simDeployment);
     
-    DependentTask<mars::proxies::Task> simulator;
+    DependentTask<mars::cbProxies::Task> simulator;
 };
 }

@@ -1,6 +1,7 @@
 #include "MotionPlanner.hpp"
 
-#include <motion_planning_libraries/proxies/Task.hpp>
+#include <motion_planning_libraries/cbProxies/Task.hpp>
+#include <simple_pose_integrator/cbProxies/Task.hpp>
 
 namespace init
 {
@@ -24,7 +25,7 @@ bool MotionPlanner::connect()
 }
 
 
-OutputProxyPort< std::vector< base::Trajectory > >& MotionPlanner::getTrajectories()
+cbProxies::OutputPort< std::vector< base::Trajectory > >& MotionPlanner::getTrajectories()
 {
     return motionPlanningTask.getConcreteProxy()->trajectory;
 }

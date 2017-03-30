@@ -5,7 +5,7 @@
 #include <lib_init/PositionProvider.hpp>
 
 namespace simple_pose_integrator {
-     namespace proxies {
+     namespace cbProxies {
          class Task;
      }
 }
@@ -18,10 +18,10 @@ protected:
     PositionProvider &irregular_pose_provider;
     
 public:
-    DependentTask< simple_pose_integrator::proxies::Task > poseProviderTask;
+    DependentTask< simple_pose_integrator::cbProxies::Task > poseProviderTask;
     PoseProvider(PositionProvider &irregular_pose_provider, const std::string &poseProviderTaskName);
     virtual bool connect();
-    virtual OutputProxyPort< base::samples::RigidBodyState >& getPositionSamples();
+    virtual cbProxies::OutputPort< base::samples::RigidBodyState >& getPositionSamples();
 };
 
 }

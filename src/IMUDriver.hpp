@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Base.hpp"
-#include <orocos_cpp_base/ProxyPort.hpp>
+#include <orocos_callback_base/Port.hpp>
 #include <base/samples/RigidBodyState.hpp>
 #include <base/samples/IMUSensors.hpp>
 namespace init
@@ -11,8 +11,8 @@ namespace init
     public:
         IMUDriver(const std::string& name) : Base(name) {};
         virtual ~IMUDriver() {};
-        virtual OutputProxyPort<base::samples::RigidBodyState> getOrientationSamples() = 0;
-        virtual OutputProxyPort<base::samples::IMUSensors> getSensorSamples() = 0;    
+        virtual cbProxies::OutputPort<base::samples::RigidBodyState> getOrientationSamples() = 0;
+        virtual cbProxies::OutputPort<base::samples::IMUSensors> getSensorSamples() = 0;    
     };
     
 }

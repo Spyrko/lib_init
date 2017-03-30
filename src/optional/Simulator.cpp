@@ -1,6 +1,6 @@
 #include "Simulator.hpp"
 
-#include <mars/proxies/Task.hpp>
+#include <mars/cbProxies/Task.hpp>
 
 namespace init
 {

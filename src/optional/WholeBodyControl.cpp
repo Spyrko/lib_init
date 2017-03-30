@@ -1,10 +1,10 @@
 #include "WholeBodyControl.hpp"
-#include <wbc/proxies/WbcVelocityTask.hpp>
-#include <ctrl_lib/proxies/CartesianPositionController.hpp>
-#include <ctrl_lib/proxies/JointPositionController.hpp>
-#include <kccd/proxies/SelfCollisionCheck.hpp>
-#include <kccd/proxies/SelfCollisionCtrl.hpp>
-#include <waypoint_provider/proxies/JointWaypointProviderTrajectoryInput.hpp>
+#include <wbc/cbProxies/WbcVelocityTask.hpp>
+#include <ctrl_lib/cbProxies/CartesianPositionController.hpp>
+#include <ctrl_lib/cbProxies/JointPositionController.hpp>
+#include <kccd/cbProxies/SelfCollisionCheck.hpp>
+#include <kccd/cbProxies/SelfCollisionCtrl.hpp>
+#include <waypoint_provider/cbProxies/JointWaypointProviderTrajectoryInput.hpp>
 
 namespace init 
 {
@@ -85,27 +85,27 @@ bool WholeBodyControl::configure()
     return ret;
 }
 
-InputProxyPort< base::samples::Joints >& WholeBodyControl::getPositionTargetPort()
+cbProxies::InputPort< base::samples::Joints >& WholeBodyControl::getPositionTargetPort()
 {
     return jointPosCtrlTask.getConcreteProxy()->setpoint;
 }
 
-InputProxyPort< base::JointsTrajectory >& WholeBodyControl::getTrajectoryTargetPort()
+cbProxies::InputPort< base::JointsTrajectory >& WholeBodyControl::getTrajectoryTargetPort()
 {
     return waypointProvTask.getConcreteProxy()->waypoints_in;
 }
 
-InputProxyPort< base::samples::RigidBodyState >& WholeBodyControl::getCartPosTargetPort()
+cbProxies::InputPort< base::samples::RigidBodyState >& WholeBodyControl::getCartPosTargetPort()
 {
     return cartPosCtrlTask.getConcreteProxy()->setpoint;
 }
 
-OutputProxyPort< base::samples::Joints > WholeBodyControl::getCommandOutPort()
+cbProxies::OutputPort< base::samples::Joints > WholeBodyControl::getCommandOutPort()
 {
     return wbcTask.getConcreteProxy()->ctrl_out;
 }
 
-OutputProxyPort< trajectory_generation::ConstrainedJointsCmd >& WholeBodyControl::getConstrainedCommandOutPort()
+cbProxies::OutputPort< trajectory_generation::ConstrainedJointsCmd >& WholeBodyControl::getConstrainedCommandOutPort()
 {
     return kccdCtrlTask.getConcreteProxy()->constrained_command_out;
 }

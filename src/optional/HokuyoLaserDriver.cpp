@@ -15,7 +15,7 @@ bool HokuyoLaserDriver::connect()
 }
 
 
-OutputProxyPort< base::samples::LaserScan >& HokuyoLaserDriver::getLaserReadingsPort()
+cbProxies::OutputPort< base::samples::LaserScan >& HokuyoLaserDriver::getLaserReadingsPort()
 {
     return filterTask.getConcreteProxy()->filtered_scans;
 }

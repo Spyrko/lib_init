@@ -1,16 +1,24 @@
 #include "Init.hpp"
+#include "../../../proxy_types/src/RTT.hpp"
 #include <orocos_cpp/Spawner.hpp>
 #include <orocos_cpp/PluginHelper.hpp>
 #include <orocos_cpp/LoggingHelper.hpp>
 
-Init::Init(orocos_cpp::TransformerHelper &trHelper, orocos_cpp::ConfigurationHelper &confHelper, init::Base &toStart, state_machine::State *success) : State("Init", success), toStart(&toStart), trHelper(trHelper), confHelper(confHelper)
+Init::Init(orocos_cpp::TransformerHelper &trHelper, cbProxies::ConfigurationHelper &confHelper, init::Base &toStart, state_machine::State *success) : State("Init", success), toStart(&toStart), trHelper(trHelper), confHelper(confHelper), cbi(new cbProxies::proxTypes::RTTCallback())
 {
     loggingActive = false;
 }
 
 Init::~Init()
 {
+    delete cbi;
+}
 
+
+void Init::setCallbackInterface(cbProxies::CallbackInterface* cbi)
+{
+    if(this->cbi) delete this->cbi;
+    this->cbi = cbi;
 }
 
 
@@ -18,6 +26,7 @@ void Init::enter(const state_machine::State* lastState)
 {
 
 }
+
 
 void Init::activateLogging(const std::vector<std::string> &excludeList)
 {
@@ -82,9 +91,6 @@ bool Init::startDeploymentRecursive(init::Base& toStart, std::vector<orocos_cpp:
         startDeploymentRecursive(*dep, started);
     }
 
-    orocos_cpp::Spawner &spawner(orocos_cpp::Spawner::getInstace());
-    orocos_cpp::PluginHelper helper;
-
 
     //start all tasks of this unit
     for(init::DependentTaskBase *dtb : toStart.getDependendTasks())
@@ -95,12 +101,8 @@ bool Init::startDeploymentRecursive(init::Base& toStart, std::vector<orocos_cpp:
         started.push_back(dtb->getDeployment().get());
 
         std::cout << "Init::startDeploymentRecursive : Starting deployment " << dtb->getDeployment()->getName() << "Pointer is " << dtb->getDeployment() << std::endl;
-        for(const std::string &tk : dtb->getDeployment()->getNeededTypekits())
-        {
-            helper.loadTypekitAndTransports(tk);
-        }
-
-        spawner.spawnDeployment(dtb->getDeployment().get());
+        dtb->getProxy()->setCallbackInterface(cbi);
+        cbi->spawnDeployment(*dtb->getDeployment().get());
     }
 
     return true;

@@ -18,10 +18,10 @@ SimVelodyneDriver::~SimVelodyneDriver()
 void SimVelodyneDriver::initProxies()
 {
     Base::initProxies();
-    simulatedPointcloudPort = new OutputProxyPort< base::samples::Pointcloud >(velodyneTask.getProxy()->getPort("pointcloud"));
+    simulatedPointcloudPort = new cbProxies::OutputPort< base::samples::Pointcloud >(velodyneTask.getProxy()->getPort("pointcloud"));
 }
 
-OutputProxyPort< base::samples::Pointcloud >& SimVelodyneDriver::getPointCloudPort()
+cbProxies::OutputPort< base::samples::Pointcloud >& SimVelodyneDriver::getPointCloudPort()
 {
     return *simulatedPointcloudPort;
 }

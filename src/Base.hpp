@@ -1,7 +1,7 @@
 #pragma once
 
 #include <orocos_cpp/TransformerHelper.hpp>
-#include <orocos_cpp/ConfigurationHelper.hpp>
+#include <orocos_callback_base/ConfigurationHelper.hpp>
 #include <orocos_cpp/Deployment.hpp>
 #include "DependentTask.hpp"
 
@@ -61,7 +61,7 @@ public:
      * Applies the configuraton for the dependend tasks of this 
      * Init Object.
      * */
-    virtual bool applyConfig(orocos_cpp::ConfigurationHelper &confHelper);
+    virtual bool applyConfig(cbProxies::ConfigurationHelper &helper);
 
     /***
      * @previous applyConfig
@@ -69,7 +69,7 @@ public:
      * 
      * Sets up the Transformer for the dependend tasks of this Init Object
      * */
-    virtual bool setupTransformer(orocos_cpp::TransformerHelper &trHelper);
+    virtual bool setupTransformer(orocos_cpp::TransformerHelper &trHelper);    //TODO Modify later
 
     /***
      * @previous setupTransformer

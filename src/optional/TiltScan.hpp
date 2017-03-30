@@ -5,7 +5,7 @@
 #include <base/samples/Pointcloud.hpp>
 
 namespace tilt_scan {
-    namespace proxies {
+    namespace cbProxies {
         class Task;
     }
 }
@@ -23,8 +23,8 @@ public:
 
     virtual bool connect();
     
-    DependentTask<tilt_scan::proxies::Task> tiltTask;
+    DependentTask<tilt_scan::cbProxies::Task> tiltTask;
     
-    OutputProxyPort<base::samples::Pointcloud> getPointcloud();
+    cbProxies::OutputPort<base::samples::Pointcloud> getPointcloud();
 };
 }

@@ -5,12 +5,12 @@ init::Dynamixel::Dynamixel(const std::string& taskName) : JointDriver("Dynamixel
     
 }
 
-InputProxyPort< base::commands::Joints >& init::Dynamixel::getCommandPort()
+cbProxies::InputPort< base::commands::Joints >& init::Dynamixel::getCommandPort()
 {
     return dynamixel.getConcreteProxy()->command;
 }
 
-OutputProxyPort< base::samples::Joints >& init::Dynamixel::getStatusPort()
+cbProxies::OutputPort< base::samples::Joints >& init::Dynamixel::getStatusPort()
 {
     return dynamixel.getConcreteProxy()->status_samples;
 }

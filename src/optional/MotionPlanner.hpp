@@ -6,7 +6,7 @@
 #include <lib_init/TraversabilityMapProvider.hpp>
 
 namespace motion_planning_libraries {
-     namespace proxies {
+     namespace cbProxies {
          class Task;
      }
 }
@@ -19,10 +19,10 @@ class MotionPlanner : public MotionPlannerProvider {
     TraversabilityMapProvider &travMapProvider;
     
 public:
-    DependentTask< motion_planning_libraries::proxies::Task > motionPlanningTask;
+    DependentTask< motion_planning_libraries::cbProxies::Task > motionPlanningTask;
     MotionPlanner(PoseProvider &poseProvider, TraversabilityMapProvider &travMapProvider, const std::string &motionPlanningTaskName);
     virtual bool connect();
-    virtual OutputProxyPort< std::vector< base::Trajectory > >& getTrajectories();
+    virtual cbProxies::OutputPort< std::vector< base::Trajectory > >& getTrajectories();
 };
 
 }

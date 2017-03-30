@@ -2,7 +2,7 @@
 
 #include <lib_init/PositionProvider.hpp>
 #include <lib_init/PointCloudProvider.hpp>
-#include <slam3d/proxies/PointcloudMapper.hpp>
+#include <slam3d/cbProxies/PointcloudMapper.hpp>
 
 namespace init
 {
@@ -18,9 +18,9 @@ public:
     
     virtual bool connect();
     
-    virtual OutputProxyPort< base::samples::RigidBodyState >& getPositionSamples();
+    virtual cbProxies::OutputPort< base::samples::RigidBodyState >& getPositionSamples();
 
-    DependentTask<slam3d::proxies::PointcloudMapper> mapper;
+    DependentTask<slam3d::cbProxies::PointcloudMapper> mapper;
 };
 
 

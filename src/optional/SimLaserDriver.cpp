@@ -17,7 +17,7 @@ void SimLaserDriver::initProxies()
 }
 
 
-OutputProxyPort< base::samples::LaserScan >& SimLaserDriver::getLaserReadingsPort()
+cbProxies::OutputPort< base::samples::LaserScan >& SimLaserDriver::getLaserReadingsPort()
 {
     return laserTask.getConcreteProxy()->scans;
 }

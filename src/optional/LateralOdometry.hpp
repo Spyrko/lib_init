@@ -1,7 +1,7 @@
 #pragma once
 
 #include <lib_init/PositionProvider.hpp>
-#include <odometry/proxies/LatOdom.hpp>
+#include <odometry/cbProxies/LatOdom.hpp>
 #include <lib_init/JointDriver.hpp>
 #include <lib_init/IMUDriver.hpp>
 
@@ -16,9 +16,9 @@ public:
     LateralOdometry(const std::string &odometryName, JointDriver &joints, IMUDriver &imu);
     virtual ~LateralOdometry();
     virtual bool connect();
-    DependentTask<odometry::proxies::LatOdom> lateralOdometry;
+    DependentTask<odometry::cbProxies::LatOdom> lateralOdometry;
     
-    virtual OutputProxyPort< base::samples::RigidBodyState >& getPositionSamples();
+    virtual cbProxies::OutputPort< base::samples::RigidBodyState >& getPositionSamples();
 };
 
 }

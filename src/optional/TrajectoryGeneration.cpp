@@ -1,5 +1,5 @@
 #include "TrajectoryGeneration.hpp"
-#include <trajectory_generation/proxies/Task.hpp>
+#include <trajectory_generation/cbProxies/Task.hpp>
 
 namespace init
 {
@@ -20,17 +20,17 @@ bool TrajectoryGeneration::connect()
     return Base::connect();
 }
 
-InputProxyPort< base::samples::Joints >& TrajectoryGeneration::getPositionTargetPort()
+cbProxies::InputPort< base::samples::Joints >& TrajectoryGeneration::getPositionTargetPort()
 {
     return trajCtrlTask.getConcreteProxy()->position_target;
 }
 
-InputProxyPort< base::JointsTrajectory >& TrajectoryGeneration::getTrajectoryTargetPort()
+cbProxies::InputPort< base::JointsTrajectory >& TrajectoryGeneration::getTrajectoryTargetPort()
 {
     return trajCtrlTask.getConcreteProxy()->trajectory_target;
 }
 
-OutputProxyPort< base::samples::Joints >& TrajectoryGeneration::getJointStatusPort()
+cbProxies::OutputPort< base::samples::Joints >& TrajectoryGeneration::getJointStatusPort()
 {
     return jointDriver.getStatusPort();
 }

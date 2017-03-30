@@ -1,6 +1,6 @@
 #include "PoseProvider.hpp"
 
-#include <simple_pose_integrator/proxies/Task.hpp>
+#include <simple_pose_integrator/cbProxies/Task.hpp>
 
 namespace init
 {
@@ -21,7 +21,7 @@ bool PoseProvider::connect()
 }
 
 
-OutputProxyPort< base::samples::RigidBodyState >& PoseProvider::getPositionSamples()
+cbProxies::OutputPort< base::samples::RigidBodyState >& PoseProvider::getPositionSamples()
 {
     return poseProviderTask.getConcreteProxy()->pose_samples;
 }

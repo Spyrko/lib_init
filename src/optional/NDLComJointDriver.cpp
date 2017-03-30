@@ -1,8 +1,8 @@
 #include "NDLComJointDriver.hpp"
 #include <orocos_cpp/Spawner.hpp>
 
-#include <serial_ndlcom/proxies/Task.hpp>
-#include <ndlcom_device_driver/proxies/NDLComJointDriverBaseTask.hpp>
+#include <serial_ndlcom/cbProxies/Task.hpp>
+#include <ndlcom_device_driver/cbProxies/NDLComJointDriverBaseTask.hpp>
 
 namespace init
 {
@@ -39,12 +39,12 @@ bool NDLComJointDriver::start()
 }
 
 
-InputProxyPort< base::commands::Joints >& NDLComJointDriver::getCommandPort()
+cbProxies::InputPort< base::commands::Joints >& NDLComJointDriver::getCommandPort()
 {
     return jointDriver.getConcreteProxy()->joints_command;
 }
 
-OutputProxyPort< base::samples::Joints >& NDLComJointDriver::getStatusPort()
+cbProxies::OutputPort< base::samples::Joints >& NDLComJointDriver::getStatusPort()
 {
     return jointDriver.getConcreteProxy()->joints_status;
 }

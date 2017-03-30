@@ -30,7 +30,7 @@ bool init::Slam3d::connect()
     return init::Base::connect();
 }
 
-OutputProxyPort< base::samples::RigidBodyState >& init::Slam3d::getPositionSamples()
+cbProxies::OutputPort< base::samples::RigidBodyState >& init::Slam3d::getPositionSamples()
 {
     return mapper.getConcreteProxy()->map2robot;
 }

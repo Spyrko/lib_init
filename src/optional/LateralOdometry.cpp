@@ -22,7 +22,7 @@ bool init::LateralOdometry::connect()
     return init::Base::connect();
 }
 
-OutputProxyPort< base::samples::RigidBodyState >& init::LateralOdometry::getPositionSamples()
+cbProxies::OutputPort< base::samples::RigidBodyState >& init::LateralOdometry::getPositionSamples()
 {
     return lateralOdometry.getConcreteProxy()->odometry_samples;
 }

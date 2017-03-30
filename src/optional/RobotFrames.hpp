@@ -1,7 +1,7 @@
 #pragma once
 
 #include <lib_init/JointDriver.hpp>
-#include <robot_frames/proxies/Task.hpp>
+#include <robot_frames/cbProxies/Task.hpp>
 
 namespace init {
 
@@ -13,7 +13,7 @@ public:
     
     virtual bool connect();
     
-    DependentTask<robot_frames::proxies::Task> robotFrames;
+    DependentTask<robot_frames::cbProxies::Task> robotFrames;
 };
 
 }

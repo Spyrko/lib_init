@@ -29,12 +29,12 @@ bool init::HBridge::connect()
     return init::Base::connect();
 }
 
-InputProxyPort< base::commands::Joints >& init::HBridge::getCommandPort()
+cbProxies::InputPort< base::commands::Joints >& init::HBridge::getCommandPort()
 {
     return commandWriter.getConcreteProxy()->command;
 }
 
-OutputProxyPort< base::samples::Joints >& init::HBridge::getStatusPort()
+cbProxies::OutputPort< base::samples::Joints >& init::HBridge::getStatusPort()
 {
     return sensorReader.getConcreteProxy()->status_samples;
 }

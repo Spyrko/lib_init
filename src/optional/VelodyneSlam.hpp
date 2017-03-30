@@ -8,7 +8,7 @@
 #include <envire/core/EventTypes.hpp>
 
 namespace graph_slam {
-     namespace proxies {
+     namespace cbProxies {
          class VelodyneSLAM;
      }
 }
@@ -24,14 +24,14 @@ protected:
     PositionProvider &odometry;
 
 public:
-    DependentTask< graph_slam::proxies::VelodyneSLAM > velodyneSlamTask;
+    DependentTask< graph_slam::cbProxies::VelodyneSLAM > velodyneSlamTask;
     virtual ~VelodyneSlam();
     VelodyneSlam(VelodyneDriver &vd, PositionProvider &odometry, const std::string &velodyneSlamTaskName);
     VelodyneSlam(SimVelodyneDriver &vd, PositionProvider &odometry, const std::string &velodyneSlamTaskName);
     virtual bool connect();
     
-    virtual OutputProxyPort< base::samples::RigidBodyState >& getPositionSamples();
-    virtual OutputProxyPort< RTT::extras::ReadOnlyPointer< envire::BinaryEvents > >& getMapPort();
+    virtual cbProxies::OutputPort< base::samples::RigidBodyState >& getPositionSamples();
+    virtual cbProxies::OutputPort< RTT::extras::ReadOnlyPointer< envire::BinaryEvents > >& getMapPort();
 };
 
 }

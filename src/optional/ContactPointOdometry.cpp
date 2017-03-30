@@ -22,7 +22,7 @@ bool init::ContactPointOdometry::connect()
     return init::Base::connect();
 }
 
-OutputProxyPort< base::samples::RigidBodyState >& init::ContactPointOdometry::getPositionSamples()
+cbProxies::OutputPort< base::samples::RigidBodyState >& init::ContactPointOdometry::getPositionSamples()
 {
     return contactPointOdometry.getConcreteProxy()->odometry_samples;
 }

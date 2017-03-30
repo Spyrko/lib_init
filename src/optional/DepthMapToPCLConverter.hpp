@@ -2,7 +2,7 @@
 
 #include <lib_init/PointCloudProvider.hpp>
 #include <lib_init/DepthMapProvider.hpp>
-#include <depth_map_preprocessing/proxies/PointcloudConverter.hpp>
+#include <depth_map_preprocessing/cbProxies/PointcloudConverter.hpp>
 
 namespace init 
 {
@@ -15,8 +15,8 @@ public:
     virtual ~DepthMapToPCLConverter();
     virtual bool connect();
     
-    virtual OutputProxyPort< base::samples::Pointcloud >& getPointCloudPort();
-    DependentTask<depth_map_preprocessing::proxies::PointcloudConverter> converter;
+    virtual cbProxies::OutputPort< base::samples::Pointcloud >& getPointCloudPort();
+    DependentTask<depth_map_preprocessing::cbProxies::PointcloudConverter> converter;
 };
 
 }

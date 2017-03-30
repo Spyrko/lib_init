@@ -1,6 +1,6 @@
 #include "AILAJointDriver.hpp"
 #include <orocos_cpp/Spawner.hpp>
-#include <serial_ndlcom/proxies/Task.hpp>
+#include <serial_ndlcom/cbProxies/Task.hpp>
 
 namespace init
 {
@@ -26,12 +26,12 @@ bool AILAJointDriver::start()
     return init::JointDriver::start();
 }
 
-InputProxyPort< base::commands::Joints >& AILAJointDriver::getCommandPort()
+cbProxies::InputPort< base::commands::Joints >& AILAJointDriver::getCommandPort()
 {
     return jointTask.getConcreteProxy()->joints_command;
 }
 
-OutputProxyPort< base::samples::Joints >& AILAJointDriver::getStatusPort()
+cbProxies::OutputPort< base::samples::Joints >& AILAJointDriver::getStatusPort()
 {
     return jointTask.getConcreteProxy()->joints_status;
 }

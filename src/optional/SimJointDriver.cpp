@@ -11,12 +11,12 @@ SimJointDriver::SimJointDriver(Simulator& sim, const std::string &marsJointTaskN
 }
 
 
-InputProxyPort< base::commands::Joints >& SimJointDriver::getCommandPort()
+cbProxies::InputPort< base::commands::Joints >& SimJointDriver::getCommandPort()
 {
     return jointTask.getConcreteProxy()->command;
 }
 
-OutputProxyPort< base::samples::Joints >& SimJointDriver::getStatusPort()
+cbProxies::OutputPort< base::samples::Joints >& SimJointDriver::getStatusPort()
 {
     return jointTask.getConcreteProxy()->joints_status;
 }

@@ -2,7 +2,7 @@
 
 #include <lib_init/CameraDriver.hpp>
 #include "Simulator.hpp"
-#include <mars/proxies/Camera.hpp>
+#include <mars/cbProxies/Camera.hpp>
 
 
 namespace init
@@ -15,10 +15,10 @@ public:
 
     virtual void initProxies();
 
-    virtual OutputProxyPort< RTT::extras::ReadOnlyPointer< base::samples::frame::Frame > > &getFramePort();
+    virtual cbProxies::OutputPort< RTT::extras::ReadOnlyPointer< base::samples::frame::Frame > > &getFramePort();
     
-    DependentTask<mars::proxies::Camera> cameraTask;
+    DependentTask<mars::cbProxies::Camera> cameraTask;
 protected:
-    OutputProxyPort< RTT::extras::ReadOnlyPointer< base::samples::frame::Frame > > *framePort;
+    cbProxies::OutputPort< RTT::extras::ReadOnlyPointer< base::samples::frame::Frame > > *framePort;
 };
 }

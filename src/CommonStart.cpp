@@ -64,7 +64,7 @@ StartCommon::StartCommon(int argc, char** argv)
     RTT::types::TypekitRepository::Import(new RTT::corba::CorbaLibPlugin);
     RTT::types::TypekitRepository::Import(new RTT::mqueue::MQLibPlugin);
 
-    state_machine::Config *config = &(state_machine::Config::getConfig(libConfig::Bundle::getInstance().getConfigurationDirectory() + "../taskmanagement.yml"));
+//     state_machine::Config *config = &(state_machine::Config::getConfig(libConfig::Bundle::getInstance().getConfigurationDirectory() + "../taskmanagement.yml"));
 }
 
 void StartCommon::setLoggingExcludes(const std::vector< std::string >& excludeList)
@@ -171,7 +171,7 @@ void StartCommon::startCommon(smurf::Robot *robot)
     this->robot = robot;
 
     transformerHelper = new orocos_cpp::TransformerHelper(*robot);
-    configHelper = new orocos_cpp::ConfigurationHelper();
+    configHelper = new cbProxies::ConfigurationHelper();
 }
 
 
