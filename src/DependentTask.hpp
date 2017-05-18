@@ -59,7 +59,7 @@ public:
     void setConfig(const std::string& config, const std::string& config2, const std::string& config3);
 
     
-    virtual cbProxies::TaskProxy *getProxy();
+    virtual cbProxies::TaskProxy *getProxy() = 0;
     
 };
     

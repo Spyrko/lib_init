@@ -6,10 +6,9 @@ rock_library(init_states
     DEPS
         lib_init
     DEPS_PKGCONFIG 
-        logger-proxies
+        logger-cbProxies
         orocos_cpp_base
         orocos_cpp
         state_machine
         lib_config
-        proxy_types
 )

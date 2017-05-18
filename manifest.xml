@@ -13,4 +13,5 @@
   <depend package="tools/state_machine_tk" />
   <depend package="tools/orocos_cpp" />
   <depend package="tools/orocos_callback_base"/>
+  <depend package="tools/proxy_types"/>
 </package>

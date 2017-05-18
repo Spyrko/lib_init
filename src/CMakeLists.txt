@@ -45,7 +45,7 @@ message("SRC extra is ${SRC_EXTRA}")
 rock_library(lib_init
     SOURCES
         Base.cpp
-#         CommonStart.cpp
+        CommonStart.cpp
         DependentTask.cpp
         MapProvider.cpp
         PointCloudProvider.cpp
@@ -55,7 +55,7 @@ rock_library(lib_init
         Base.hpp
         CameraDriver.hpp
         Container.hpp
-#         CommonStart.hpp
+        CommonStart.hpp
         DependentTask.hpp
         ForceTorqueSensor.hpp
         IMUDriver.hpp
@@ -78,9 +78,10 @@ rock_library(lib_init
         orocos_cpp_base
         orocos_cpp
         lib_config
-        logger-proxies
+        logger-cbProxies
         state_machine
         state_machine_viz
         lib_config
+        proxy_types
         ${PKG_CONFIG_EXTRA}
 )
