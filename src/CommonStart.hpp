@@ -18,6 +18,7 @@ namespace orocos_cpp
 namespace cbProxies
 {
     class ConfigurationHelper;
+    class CallbackInterface;
 }
 
 namespace smurf 
@@ -34,7 +35,7 @@ class StartCommon
 
     smurf::Robot *getDefaultRobot();
     void startCommon(smurf::Robot *robot);
-    int runCommon(state_machine::State *initialState, const std::vector< init::Base* >& toInit);
+    int runCommon(state_machine::State *initialState, const std::vector< init::Base* >& toInit, cbProxies::CallbackInterface *cbi = nullptr);
     
     orocos_cpp::TransformerHelper *transformerHelper;
     cbProxies::ConfigurationHelper *configHelper;

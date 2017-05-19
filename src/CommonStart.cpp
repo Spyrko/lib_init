@@ -5,7 +5,7 @@
 #include <state_machine/StateMachine.hpp>
 #include <state_machine/Config.hpp>
 
-#include <lib_init/states/Init.hpp>
+#include "states/Init.hpp"
 #include "Container.hpp"
 
 #include <lib_config/Bundle.hpp>
@@ -14,12 +14,13 @@
 #include <rtt/transports/corba/TransportPlugin.hpp>
 #include <rtt/transports/corba/TaskContextServer.hpp>
 #include <rtt/transports/mqueue/TransportPlugin.hpp>
-#include <rtt/OutputPort.hpp>
 #include <QApplication>
 #include <state_machine/StateMachineWidget.hpp>
 #include <smurf/Robot.hpp>
 #include <orocos_cpp_base/OrocosHelpers.hpp>
 #include <orocos_cpp/PluginHelper.hpp>
+#include <orocos_callback_base/AttributeConverter.hpp>
+#include <orocos_callback_base/Port.hpp>
 
 StartCommon::StartCommon(int argc, char** argv)
 {
@@ -72,21 +73,23 @@ void StartCommon::setLoggingExcludes(const std::vector< std::string >& excludeLi
     logExcludeList = excludeList;
 }
 
-int StartCommon::runCommon(state_machine::State *initialState, const std::vector< init::Base* >& toInit)
+int StartCommon::runCommon(state_machine::State *initialState, const std::vector< init::Base* >& toInit, cbProxies::CallbackInterface *cbi)
 {
     init::Container all(toInit); 
     
     //various init transitions
     Init initializer(*transformerHelper, *configHelper, all, initialState);
+    
+    if(cbi)
+        initializer.setCallbackInterface(cbi);
+    
+    cbi = initializer.getCallbackInterface();
 
     state_machine::StateMachine &stateMachine(state_machine::StateMachine::getInstance());
 
     RTT::TaskContext *clientTask = OrocosHelpers::getClientTask();
-    RTT::OutputPort<state_machine::serialization::Event> *eventPort = new RTT::OutputPort<state_machine::serialization::Event>();
-    RTT::OutputPort<state_machine::serialization::StateMachine> *dumpPort = new RTT::OutputPort<state_machine::serialization::StateMachine>();
-    
-    clientTask->addPort("stateMachine_Events", *eventPort);
-    clientTask->addPort("stateMachine_Dump", *dumpPort);
+    cbProxies::OutputPort<state_machine::serialization::Event> *eventPort = cbProxies::AttributeConverter::getNewOutputPort<state_machine::serialization::Event>(cbi, "stateMachine_Events", "state_machine/serialization/Event", false);
+    cbProxies::OutputPort<state_machine::serialization::StateMachine> *dumpPort = cbProxies::AttributeConverter::getNewOutputPort<state_machine::serialization::StateMachine>(cbi, "stateMachine_Dump", "state_machine/serialization/StateMachine", false);
 
     state_machine::serialization::StateMachine smDump(stateMachine);
 

@@ -21,6 +21,12 @@ void Init::setCallbackInterface(cbProxies::CallbackInterface* cbi)
     this->cbi = cbi;
 }
 
+cbProxies::CallbackInterface* Init::getCallbackInterface()
+{
+    return cbi;
+}
+
+
 
 void Init::enter(const state_machine::State* lastState)
 {

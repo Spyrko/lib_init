@@ -16,6 +16,7 @@ public:
     virtual void exit();
     
     void setCallbackInterface(cbProxies::CallbackInterface* cbi);
+    cbProxies::CallbackInterface* getCallbackInterface();
     
     void activateLogging(const std::vector< std::string >& excludeList = std::vector<std::string>());
 
