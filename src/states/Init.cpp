@@ -15,18 +15,6 @@ Init::~Init()
 }
 
 
-void Init::setCallbackInterface(cbProxies::CallbackInterface* cbi)
-{
-    if(this->cbi) delete this->cbi;
-    this->cbi = cbi;
-}
-
-cbProxies::CallbackInterface* Init::getCallbackInterface()
-{
-    return cbi;
-}
-
-
 
 void Init::enter(const state_machine::State* lastState)
 {
@@ -107,7 +95,6 @@ bool Init::startDeploymentRecursive(init::Base& toStart, std::vector<orocos_cpp:
         started.push_back(dtb->getDeployment().get());
 
         std::cout << "Init::startDeploymentRecursive : Starting deployment " << dtb->getDeployment()->getName() << "Pointer is " << dtb->getDeployment() << std::endl;
-        dtb->getProxy()->setCallbackInterface(cbi);
         cbi->spawnDeployment(*dtb->getDeployment().get());
     }
 

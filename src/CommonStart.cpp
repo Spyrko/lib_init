@@ -19,8 +19,9 @@
 #include <smurf/Robot.hpp>
 #include <orocos_cpp_base/OrocosHelpers.hpp>
 #include <orocos_cpp/PluginHelper.hpp>
-#include <orocos_callback_base/AttributeConverter.hpp>
+#include <orocos_callback_base/Helper.hpp>
 #include <orocos_callback_base/Port.hpp>
+#include <proxy_types/RTT.hpp>
 
 StartCommon::StartCommon(int argc, char** argv)
 {
@@ -81,23 +82,24 @@ int StartCommon::runCommon(state_machine::State *initialState, const std::vector
     Init initializer(*transformerHelper, *configHelper, all, initialState);
     
     if(cbi)
-        initializer.setCallbackInterface(cbi);
-    
-    cbi = initializer.getCallbackInterface();
+        cbProxies::CallbackProvider::setCallbackInterface(cbi);
+    else
+        cbProxies::CallbackProvider::setCallbackInterface(new cbProxies::proxTypes::RTTCallback());
+    cbi = cbProxies::CallbackProvider::getCallbackInterface();
 
     state_machine::StateMachine &stateMachine(state_machine::StateMachine::getInstance());
 
     RTT::TaskContext *clientTask = OrocosHelpers::getClientTask();
-    cbProxies::OutputPort<state_machine::serialization::Event> *eventPort = cbProxies::AttributeConverter::getNewOutputPort<state_machine::serialization::Event>(cbi, "stateMachine_Events", "state_machine/serialization/Event", false);
-    cbProxies::OutputPort<state_machine::serialization::StateMachine> *dumpPort = cbProxies::AttributeConverter::getNewOutputPort<state_machine::serialization::StateMachine>(cbi, "stateMachine_Dump", "state_machine/serialization/StateMachine", false);
+    cbProxies::OutputPort<state_machine::serialization::Event> *eventPort = cbProxies::CallbackProvider::getNewOutputPort<state_machine::serialization::Event>(cbi, "stateMachine_Events", "state_machine/serialization/Event", false);
+    cbProxies::OutputPort<state_machine::serialization::StateMachine> *dumpPort = cbProxies::CallbackProvider::getNewOutputPort<state_machine::serialization::StateMachine>(cbi, "stateMachine_Dump", "state_machine/serialization/StateMachine", false);
 
     state_machine::serialization::StateMachine smDump(stateMachine);
 
 //     if(simulationActive)
-//     {
+//     {static_cast include
 //         
 //         widget->update(smDump);
-//         widget->repaint();
+//         widget->repaint();static_cast include
 //         app->processEvents();
 //     }    
 
