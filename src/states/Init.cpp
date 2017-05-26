@@ -95,7 +95,7 @@ bool Init::startDeploymentRecursive(init::Base& toStart, std::vector<orocos_cpp:
         started.push_back(dtb->getDeployment().get());
 
         std::cout << "Init::startDeploymentRecursive : Starting deployment " << dtb->getDeployment()->getName() << "Pointer is " << dtb->getDeployment() << std::endl;
-        cbi->spawnDeployment(*dtb->getDeployment().get());
+        cbProxies::CallbackProvider::getCallbackInterface()->spawnDeployment(*dtb->getDeployment().get());
     }
 
     return true;

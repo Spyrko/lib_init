@@ -26,7 +26,6 @@ protected:
     
     orocos_cpp::TransformerHelper &trHelper;
     cbProxies::ConfigurationHelper &confHelper;
-    cbProxies::CallbackInterface* cbi;
 
     bool loggingActive;
     std::vector<std::string> excludeList;
