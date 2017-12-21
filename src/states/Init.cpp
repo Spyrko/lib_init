@@ -1,17 +1,16 @@
 #include "Init.hpp"
-#include "../../../proxy_types/src/RTT.hpp"
 #include <orocos_cpp/Spawner.hpp>
 #include <orocos_cpp/PluginHelper.hpp>
 #include <orocos_cpp/LoggingHelper.hpp>
 
-Init::Init(orocos_cpp::TransformerHelper &trHelper, cbProxies::ConfigurationHelper &confHelper, init::Base &toStart, state_machine::State *success) : State("Init", success), toStart(&toStart), trHelper(trHelper), confHelper(confHelper), cbi(new cbProxies::proxTypes::RTTCallback())
+Init::Init(orocos_cpp::TransformerHelper &trHelper, cbProxies::ConfigurationHelper &confHelper, init::Base &toStart, state_machine::State *success) : State("Init", success), toStart(&toStart), trHelper(trHelper), confHelper(confHelper)
 {
     loggingActive = false;
 }
 
 Init::~Init()
 {
-    delete cbi;
+    
 }
 
 
@@ -95,7 +94,7 @@ bool Init::startDeploymentRecursive(init::Base& toStart, std::vector<orocos_cpp:
         started.push_back(dtb->getDeployment().get());
 
         std::cout << "Init::startDeploymentRecursive : Starting deployment " << dtb->getDeployment()->getName() << "Pointer is " << dtb->getDeployment() << std::endl;
-        cbProxies::CallbackProvider::getCallbackInterface()->spawnDeployment(*dtb->getDeployment().get());
+        cbProxies::CallbackProvider::GetCallbackInterface()->spawnDeployment(*dtb->getDeployment().get());
     }
 
     return true;

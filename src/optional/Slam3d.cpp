@@ -32,5 +32,5 @@ bool init::Slam3d::connect()
 
 cbProxies::OutputPort< base::samples::RigidBodyState >& init::Slam3d::getPositionSamples()
 {
-    return mapper.getConcreteProxy()->map2robot;
+    return *static_cast<cbProxies::OutputPort< base::samples::RigidBodyState > *>(mapper.getConcreteProxy()->getPort("map2robot"));
 }

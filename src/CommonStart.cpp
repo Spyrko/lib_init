@@ -23,6 +23,7 @@
 #include <orocos_callback_base/Port.hpp>
 #include <proxy_types/RTT.hpp>
 
+
 StartCommon::StartCommon(int argc, char** argv)
 {
     RTT::corba::TaskContextServer::InitOrb(argc, argv);
@@ -82,16 +83,14 @@ int StartCommon::runCommon(state_machine::State *initialState, const std::vector
     Init initializer(*transformerHelper, *configHelper, all, initialState);
     
     if(cbi)
-        cbProxies::CallbackProvider::setCallbackInterface(cbi);
+        cbProxies::CallbackProvider::SetCallbackInterface(cbi);
     else
-        cbProxies::CallbackProvider::setCallbackInterface(new cbProxies::proxTypes::RTTCallback());
-    cbi = cbProxies::CallbackProvider::getCallbackInterface();
+        cbProxies::CallbackProvider::SetCallbackInterface(new cbProxies::proxTypes::RTTCallback());
 
     state_machine::StateMachine &stateMachine(state_machine::StateMachine::getInstance());
 
-    RTT::TaskContext *clientTask = OrocosHelpers::getClientTask();
-    cbProxies::OutputPort<state_machine::serialization::Event> *eventPort = cbProxies::CallbackProvider::getNewOutputPort<state_machine::serialization::Event>(cbi, "stateMachine_Events", "state_machine/serialization/Event", false);
-    cbProxies::OutputPort<state_machine::serialization::StateMachine> *dumpPort = cbProxies::CallbackProvider::getNewOutputPort<state_machine::serialization::StateMachine>(cbi, "stateMachine_Dump", "state_machine/serialization/StateMachine", false);
+    cbProxies::OutputPort<state_machine::serialization::Event> *eventPort = cbProxies::cbProxiesHelper::GetNewOutputPort<state_machine::serialization::Event>("stateMachine_Events", "state_machine/serialization/Event", false);
+    cbProxies::OutputPort<state_machine::serialization::StateMachine> *dumpPort = cbProxies::cbProxiesHelper::GetNewOutputPort<state_machine::serialization::StateMachine>("stateMachine_Dump", "state_machine/serialization/StateMachine", false);
 
     state_machine::serialization::StateMachine smDump(stateMachine);
 
